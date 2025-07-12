@@ -15,29 +15,34 @@
                         <x-input-label for="title" value="Judul" />
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" required
                             autofocus />
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
 
                     <div class="mb-4">
                         <x-input-label for="description" value="Deskripsi" />
                         <textarea name="description" class="w-full p-2 rounded bg-white dark:bg-gray-900">{{ old('description') }}</textarea>
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
 
                     <div class="mb-4">
                         <x-input-label for="expiration_time" value="Masa Aktif (hari)" />
                         <x-text-input id="expiration_time" class="block mt-1 w-full" type="number"
                             name="expiration_time" required />
+                        <x-input-error :messages="$errors->get('expiration_time')" class="mt-2" />
                     </div>
 
                     <div class="mb-4">
                         <x-input-label for="background_color" value="Warna Background" />
                         <x-text-input id="background_color" class="block mt-1 w-full" type="color"
                             name="background_color" />
+                        <x-input-error :messages="$errors->get('background_color')" class="mt-2" />
                     </div>
 
                     <div class="mb-4">
                         <x-input-label for="price" value="Harga" />
                         <x-text-input id="price" class="block mt-1 w-full" type="number" step="0.01"
                             name="price" required />
+                        <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
 
                     <x-primary-button class="mt-4">Simpan</x-primary-button>

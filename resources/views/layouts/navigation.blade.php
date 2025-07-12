@@ -20,6 +20,12 @@
                             <x-nav-link :href="route('packages.index')" :active="request()->routeIs('packages.index')">
                                 {{ __('Packages') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('complaints.index')" :active="request()->routeIs('complaints.index')">
+                                {{ __('Complaints') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                                {{ __('Products') }}
+                            </x-nav-link>
                         @endif
                     @endauth
                 </div>

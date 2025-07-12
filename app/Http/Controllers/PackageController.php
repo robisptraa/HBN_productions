@@ -10,7 +10,7 @@ class PackageController extends Controller
 {
     public function index()
     {
-        $packages = Package::all();
+        $packages = Package::latest()->get();
         return view('packages.index', compact('packages'));
     }
 
@@ -22,11 +22,11 @@ class PackageController extends Controller
     public function store(Request $request)
 		{
 				$validated = $request->validate([
-						'title' => 'required',
-						'description' => 'nullable',
-						'expiration_time' => 'required|integer',
-						'background_color' => 'nullable|string',
-						'price' => 'required|numeric',
+						'title' => ['required', 'string', 'min:3', 'max:255'],
+						'description' => ['required', 'string', 'min:3', 'max:1000'],
+						'expiration_time' => ['required', 'integer'],
+						'background_color' => ['required', 'string'],
+						'price' => ['required', 'numeric'],
 				]);
 
 				Package::create($validated);
@@ -42,11 +42,11 @@ class PackageController extends Controller
     public function update(Request $request, Package $package)
 		{
 				$validated = $request->validate([
-						'title' => 'required',
-						'description' => 'nullable',
-						'expiration_time' => 'required|integer',
-						'background_color' => 'nullable|string',
-						'price' => 'required|numeric',
+						'title' => ['required', 'string', 'min:3', 'max:255'],
+						'description' => ['nullable', 'string', 'min:3', 'max:1000'],
+						'expiration_time' => ['required', 'integer'],
+						'background_color' => ['nullable', 'string'],
+						'price' => ['required', 'numeric'],
 				]);
 
 				$package->update($validated);
