@@ -1,14 +1,13 @@
 <?php
 
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome.index');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -17,6 +16,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::post('/order', [HomeController::class, 'store'])->name('create.order');
     Route::post('/complaints', [ComplaintController::class, 'store'])->name('complaints.store');
 });
 

@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'user_id', 'package_id', 'status', 'project_desc',
-        'reference_path', 'confirm_email', 'proof_transaction_path'
+        'user_id',
+        'package_id',
+        'status',
+        'project_desc',
+        'reference_path',
+        'confirm_email',
+        'proof_transaction_path'
     ];
 
     public function user()
@@ -20,5 +25,4 @@ class Order extends Model
     {
         return $this->belongsTo(Package::class);
     }
-
 }
