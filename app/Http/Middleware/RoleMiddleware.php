@@ -18,7 +18,7 @@ class RoleMiddleware
         $user = $request->user();
 
         if (!$user || !in_array(optional($user->role)->name, $roles)) {
-            return redirect('/')->with('error', 'Unauthorized access!');
+            return redirect('home')->with('error', 'Unauthorized access!');
         }
 
         return $next($request);

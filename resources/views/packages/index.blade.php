@@ -52,7 +52,6 @@
                             <p class="text-gray-500 dark:text-gray-300">Belum ada package.</p>
                         @endforelse
                     </div>
-
                 </div>
             </div>
         </div>
