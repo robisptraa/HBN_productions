@@ -48,6 +48,9 @@
                             <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                                 {{ __('Products') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                                {{ __('Orders') }}
+                            </x-nav-link>
                         @endif
                     @endauth
                 </div>
@@ -56,6 +59,42 @@
             <!-- Settings Dropdown or Login Button -->
             <div class="hidden sm:flex sm:items-center sm:ms-6 gap-4">
                 @auth
+                    {{-- Tampilkan status langganan kalau ada --}}
+                    @if (auth()->user()->userPackages()->where('end_date', '>', now())->exists())
+                        <span class="text-green-500 font-medium text-sm">Langganan Aktif</span>
+                    @endif
+
+                    {{-- Dropdown Notifikasi --}}
+                    @if (auth()->user()->role->name === 'user')
+                        <div x-data="{ openNotif: false }" class="relative">
+                            <button @click="openNotif = !openNotif"
+                                class="relative text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                                🔔
+                                @if (auth()->user()->notifications()->count())
+                                    <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-xs px-1">
+                                        {{ auth()->user()->notifications()->count() }}
+                                    </span>
+                                @endif
+                            </button>
+
+                            <div x-show="openNotif" @click.away="openNotif = false"
+                                class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 shadow rounded p-2 z-50">
+                                <h4
+                                    class="font-bold mb-2 text-sm text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700">
+                                    Notifikasi</h4>
+                                @forelse(auth()->user()->notifications()->latest()->take(5)->get() as $notification)
+                                    <div
+                                        class="text-sm text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700 px-2 py-4">
+                                        {{ $notification->message }}
+                                    </div>
+                                @empty
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">Tidak ada notifikasi.</div>
+                                @endforelse
+                            </div>
+                        </div>
+                    @endif
+
+
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -155,6 +194,9 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Products') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                        {{ __('Orders') }}
                     </x-responsive-nav-link>
                 @endif
             @endauth
