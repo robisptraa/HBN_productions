@@ -23,18 +23,21 @@
         <h2
             class="relative text-center text-3xl font-semibold mb-8 text-gray-800 dark:text-gray-100 after:content-[''] after:absolute after:-bottom-4 after:left-1/2 after:-translate-x-1/2 after:w-16 after:h-1 after:bg-cyan-600">
             Portofolio</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
             @forelse ($products as $product)
                 <div
-                    class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow hover:shadow-lg transition">
+                    class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
                     <img src="{{ asset('storage/' . $product->logo_path) }}" alt="{{ $product->name }}"
-                        class="w-full h-56 object-cover">
+                        class="w-full h-56 object-cover rounded-t-2xl">
+
                     <div class="p-4">
-                        <h3 class="font-semibold text-lg text-gray-800 dark:text-gray-100">{{ $product->name }}
-                        </h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-2 break-words">
-                            {{ $product->description }}
-                        </p>
+                        <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-100 mb-2 text-center">
+                            {{ $product->name }}</h3>
+
+                        <div
+                            class="text-sm text-gray-600 dark:text-gray-300 space-y-2 break-words prose dark:prose-invert">
+                            {!! $product->description !!}
+                        </div>
                     </div>
                 </div>
             @empty
@@ -51,7 +54,7 @@
         <div class="grid md:grid-cols-3 gap-6">
             @forelse ($packages as $package)
                 <div style="border: 2px solid {{ $package->background_color }}"
-                    class="flex flex-col rounded-xl shadow hover:shadow-lg transition text-white max-w-sm mx-auto overflow-hidden">
+                    class="w-full text-center flex flex-col rounded-xl shadow hover:shadow-lg transition text-white max-w-sm mx-auto overflow-hidden">
 
                     <!-- Header -->
                     <div style="background-color: {{ $package->background_color }}" class="p-4">
@@ -64,7 +67,7 @@
 
                     <!-- Content -->
                     <div class="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-100 p-5 space-y-3">
-                        <p class="break-words">Deskripsi: {{ $package->description }}</p>
+                        <p class="break-words">{!! $package->description !!}</p>
                         <p>Harga: Rp. {{ number_format($package->price) }}</p>
 
                         <button x-data=""

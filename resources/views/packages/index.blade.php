@@ -26,7 +26,7 @@
                                 style="background-color: {{ $package->background_color ?? '#374151' }};">
                                 <div class="w-full">
                                     <h3 class="text-xl font-bold mb-1">{{ $package->title }}</h3>
-                                    <p class="text-sm opacity-90 overflow-auto">{{ $package->description }}</p>
+                                    <p class="text-sm opacity-90 overflow-auto">{!! $package->description !!}</p>
                                     <p class="text-lg font-semibold mt-3">Rp{{ number_format($package->price) }}</p>
                                     <p class="text-xs mt-1 opacity-80">Masa aktif: {{ $package->expiration_time }} hari
                                     </p>

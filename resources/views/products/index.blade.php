@@ -31,7 +31,8 @@
                                 <div class="grid grid-cols-[80%,20%] items-center w-full">
                                     <div class="w-full">
                                         <h3 class="text-lg font-bold">{{ $product->name }}</h3>
-                                        <p class="text-sm text-gray-600 w-full overflow-auto">{{ $product->description }}</p>
+                                        <p class="text-sm text-gray-600 w-full overflow-auto">{!! $product->description !!}
+                                        </p>
                                     </div>
 
                                     <div class="flex flex-col justify-center items-center text-center gap-2 mt-4">

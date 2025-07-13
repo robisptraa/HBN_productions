@@ -20,7 +20,7 @@
 
                     <div class="mb-4">
                         <x-input-label for="description" value="Deskripsi" />
-                        <textarea name="description" class="w-full p-2 rounded bg-white dark:bg-gray-900">{{ old('description', $package->description ?? '') }}</textarea>
+                        <textarea id="description" name="description" class="w-full p-2 rounded bg-white dark:bg-gray-900">{{ old('description', $package->description ?? '') }}</textarea>
                     </div>
 
                     <div class="mb-4">
